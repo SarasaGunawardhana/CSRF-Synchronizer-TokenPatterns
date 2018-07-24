@@ -4,13 +4,13 @@
     IT No : IT14078842
 -->
 <?php
-
-
-if(isset($_SESSION['USERNAME']) && $_SESSION['LOG'] == "in"){
+// If user already logged in, index page redirected to home page
+ob_start();
+session_start();
+if(isset($_SESSION['USERNAME'])){
 	header("location: ./views/home.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,12 +18,14 @@ if(isset($_SESSION['USERNAME']) && $_SESSION['LOG'] == "in"){
 		<link rel="stylesheet" href="./css/style.css">
 	</head>
 	<body>
-		<h1> <?php echo $_SESSION['username']; ?></h1>
+
+		<!-- form action send to validateClass.php via POST Request -->
 		<form action="./classes/validateClass.php" method="post">
+			<!-- image -->
 			<div class="imgcontainer">
 				<img src="./images/img_avatar2.png" alt="Avatar" class="avatar">
 			</div>
-
+			<!-- here shows the errors if any unathurised accesses -->
 			<div class="">
 				<?php
 					if(isset($_GET['er'])){
@@ -32,21 +34,17 @@ if(isset($_SESSION['USERNAME']) && $_SESSION['LOG'] == "in"){
 				?>
 			</div>
 			<div class="container">
+				<!-- username -->
 				<label for="uname"><b>Username</b></label>
 				<input type="text" placeholder="Enter Username" name="uname" required>
-
+				<!-- Password -->
 				<label for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
-					
+				<!-- Submit Button -->
 				<button type="submit">Login</button>
 				<label>
 					<input type="checkbox" checked="checked" name="remember"> Remember me
 				</label>
-			</div>
-
-			<div class="container" style="background-color:#f1f1f1">
-				<button type="button" class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
 			</div>
 		</form>
 	</body>

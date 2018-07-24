@@ -18,6 +18,6 @@
     }
 
     if($_SESSION['LOG'] != "in"){
-    header("location: ../home.php?er=You are not authorized to access the content.");
+    header("location: ../index.php?er=You are not authorized to access the content.");
     }
 ?>
