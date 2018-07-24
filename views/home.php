@@ -1,7 +1,4 @@
-<!--
-    name : Sarasa Gunawardhana
-    IT No : IT14078842
--->
+<!-- name : Sarasa Gunawardhana # IT No : IT14078842 -->
 <?php include("../classes/sessionClass.php"); ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +7,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
         </script>
-
         <script>
             // generate CSRF token and add it post request
             $(document).ready(function(){
@@ -37,7 +33,7 @@
                 echo '<hr><h3 style="text-align:center;color:green;">'.$_GET['er'].'</h3><hr><br />';
             }
         ?>
-        <form class="form-inline" action="../classes/tokenValidator.php">
+        <form class="form-inline" action="../classes/tokenValidatorClass.php" method="post">
             <div class="form-group">
                 <label for="email">Post Request:</label>
                 <input type="text" name="request" class="form-control" id="request">

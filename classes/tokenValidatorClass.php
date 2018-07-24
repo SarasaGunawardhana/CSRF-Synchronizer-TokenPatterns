@@ -9,7 +9,7 @@ if(isset($_POST['request']) && isset($_POST['token'])){
 
     if($token == $_POST['token']){
         if($session_id == $_COOKIE['ssd_sid']){
-            header("location: ../views/home.php?er=request successfull!");
+            header("location: ../views/home.php?er=Request successfull!");
         }
         else {
             header("location: ../views/error.php?er=request validation failed!");
