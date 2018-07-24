@@ -16,4 +16,4 @@
 
     fclose($token);
     echo $_SESSION['TOKEN'];
-  ?>
+?>

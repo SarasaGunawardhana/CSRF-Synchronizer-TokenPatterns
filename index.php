@@ -1,7 +1,5 @@
-
 <!--
-    name : Sarasa Gunawardhana
-    IT No : IT14078842
+    name : Sarasa Gunawardhana # IT No : IT14078842
 -->
 <?php
 // If user already logged in, index page redirected to home page
@@ -18,7 +16,6 @@ if(isset($_SESSION['USERNAME'])){
 		<link rel="stylesheet" href="./css/style.css">
 	</head>
 	<body>
-
 		<!-- form action send to validateClass.php via POST Request -->
 		<form action="./classes/validateClass.php" method="post">
 			<!-- image -->

@@ -2,10 +2,7 @@
     name : Sarasa Gunawardhana
     IT No : IT14078842
 -->
-<?php
-  include("../classes/sessionClass.php");
-?>
-
+<?php include("../classes/sessionClass.php"); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,53 +11,38 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
         </script>
 
-	<script>
-        $(document).ready(function(){
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("token_to_be_added").setAttribute('value', this.responseText) ;
-            }
-        };
-        xhttp.open("GET", "../classes/csrfClass.php", true);
-        xhttp.send();
-        });
-
-    </script>
+        <script>
+            // generate CSRF token and add it post request
+            $(document).ready(function(){
+            var http_request = new XMLHttpRequest();
+            http_request.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("token_to_be_added").setAttribute('value', this.responseText) ;
+                }
+            };
+            http_request.open("GET", "../classes/csrfClass.php", true);
+            http_request.send();
+            });
+        </script>
 	</head>
 	<body>
-        <div>
-            <?php
-                if(isset($_GET['er'])){
-                    echo '<h1 style="text-align:center;color:red;">'.$_GET['er'].'</h1><br />';
-                }
-            ?>
-        </div>
+        <!-- Logout - seesion will destroy and redirected into index page -->
         <a href="../classes/logoutClass.php">
             <button class="btn btn-danger">Logout</button>
-        </a>
-		<!-- <form action="home.php" method="post">
-			<div>
-				<strong>Hello <?php echo $_SESSION['USERNAME'] ?></strong>
-					<div>
-							Post Request : <input type="text" name="request">
-					</div>
-					<input type="Submit" value="Send">
-
-					
-
-			</div>
-        </form> -->
-        <br>
-        <hr>
+        </a> <br><hr>
         <strong>Hello <?php echo $_SESSION['USERNAME'] ?></strong>
         <hr>
-        <form class="form-inline" action="/home.php">
+        <?php
+            if(isset($_GET['er'])){
+                echo '<hr><h3 style="text-align:center;color:green;">'.$_GET['er'].'</h3><hr><br />';
+            }
+        ?>
+        <form class="form-inline" action="../classes/tokenValidator.php">
             <div class="form-group">
                 <label for="email">Post Request:</label>
                 <input type="text" name="request" class="form-control" id="request">
             </div>
+            <!-- Auto generated token added each time -->
             <input type="hidden" name="token" value="" id="token_to_be_added"/>
             <button type="submit" class="btn btn-success">Send</button>
         </form> 
